@@ -1,7 +1,5 @@
 package org.wkhtmltox
 
-import org.apache.commons.io.IOUtils
-
 /**
  * @author tobiasnendel
  */
@@ -10,14 +8,13 @@ class WkhtmltoxExecutor {
     String binaryPath
     WkhtmltoxWrapper wrapper
 
-
     WkhtmltoxExecutor(String binaryPath, WkhtmltoxWrapper wrapper) {
 
-
-        if(!(new File(binaryPath)).exists()){
+        if (!(new File(binaryPath)).exists()) {
             throw new WkhtmltoxException("Could not locate Wkhtmltox binary.")
         }
-        if(!wrapper){
+
+        if (!wrapper) {
             throw new WkhtmltoxException("Wrapper must be set.")
         }
 
@@ -25,42 +22,37 @@ class WkhtmltoxExecutor {
         this.wrapper = wrapper
     }
 
-    byte[] generatePdf(URL url){
+    byte[] generatePdf(URL url) {
+        // TODO
+    }
 
-    } // TODO
+    byte[] generatePdf(String html) {
+        def stderr
+        try {
+            def commandList = wrapper.toArgumentsList()
+            commandList.add(0, binaryPath)
+            commandList << "-q" << "-" << "-"
+            def process = (commandList as String[]).execute()
 
-    byte[] generatePdf(String html){
+            def stdout = new ByteArrayOutputStream()
+            stderr = new ByteArrayOutputStream()
+            OutputStreamWriter os = new OutputStreamWriter(process.outputStream, "UTF8")
+            os.write(html)
+            os.close()
 
-
-
-        def commandList = wrapper.toArgumentsList()
-        byte[] data
-        commandList.add(0,binaryPath)
-        commandList.add("-q")
-        commandList.add("-")
-        commandList.add("-")
-
-        System.out.print(commandList.toString())
-        ProcessBuilder builder = new ProcessBuilder(commandList)
-        final Process process = builder.start()
-
-        OutputStreamWriter os = new OutputStreamWriter(process.getOutputStream(),"UTF8")
-        os.write(html)
-        os.close()
-
-        try{
-            data = IOUtils.toByteArray(process.getInputStream())
-        }catch(Exception e) {
-            throw new WkhtmltoxException(e)
-        }finally{
-            process.getInputStream().close()
-            String error = ""
-            process.getErrorStream().withReader {
-                System.out.print(it.readLine())
-                error << it.readLine()
-            }
-            process.getErrorStream().close()
+            process.waitForProcessOutput(stdout, stderr)
+            return stdout.toByteArray()
         }
-        return data
+        catch (e) {
+            throw new WkhtmltoxException(e)
+        }
+        finally {
+            if (stderr) {
+                def bytes = stderr.toByteArray()
+                if (bytes.length) {
+                    log.error new String(bytes)
+                }
+            }
+        }
     }
 }

@@ -3,17 +3,10 @@ package org.wkhtmltox
 /**
  * @author tobiasnendel
  */
-class WkhtmltoxException extends Exception {
-
-    WkhtmltoxException() {
-    }
+class WkhtmltoxException extends RuntimeException {
 
     WkhtmltoxException(String s) {
         super(s)
-    }
-
-    WkhtmltoxException(String s, Throwable throwable) {
-        super(s, throwable)
     }
 
     WkhtmltoxException(Throwable throwable) {
