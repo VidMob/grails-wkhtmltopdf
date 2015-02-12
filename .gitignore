@@ -5,3 +5,5 @@
 /plugin.xml
 /target
 /web-app
+/.idea
+/*.iml
