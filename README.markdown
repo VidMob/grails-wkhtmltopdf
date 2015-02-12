@@ -6,7 +6,7 @@ This plugin provides an easy integration of the wkhtmltox library into Grails.
 Wkhtmltopdf
 ----------------
 "Simple shell utility to convert html to pdf using the webkit rendering engine, and qt."
-http://code.google.com/p/wkhtmltopdf/
+http://wkhtmltopdf.org/
 GNU Lesser GPL
 
 Installation
@@ -19,9 +19,6 @@ mac
 linux
 
     apt-get install wkhtmltopdf
-
-see: http://code.google.com/p/wkhtmltopdf/wiki/compilation
-compiled versions available at: http://code.google.com/p/wkhtmltopdf/downloads/list
 
 finally make sure the following command works as expected:
 
@@ -118,5 +115,5 @@ see the following command for all options available:
 Known issues
 ----------------
 
-* wkhtmltox must work ( try: `wkhtmltopdf www.myhomepage.com myhomepage.pdf` see: http://code.google.com/p/wkhtmltopdf/wiki/Usage )
+* wkhtmltox must work ( try: `wkhtmltopdf www.myhomepage.com myhomepage.pdf` )
 * not tested on Windows (except windows7)
