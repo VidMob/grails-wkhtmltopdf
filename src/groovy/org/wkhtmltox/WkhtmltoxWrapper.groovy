@@ -65,7 +65,7 @@ class WkhtmltoxWrapper {
     //no-custom-header-propagation  //                         //Do not add HTTP headers specified by --custom-header for each resource request.
     boolean debugJavascript         //                         //Show javascript debugging output
     boolean noDebugJavascript       //                         //Do not show javascript debugging output (default)
-    boolean defaultHeader           //                         //Add a default header, with the name of the page to the left, and the page number to the right, this is short for: --header-left='[webpage]' --header-right='[page]/[toPage]' --top 2cm --header-line
+    String defaultHeader            //                         //Add a default header, with the name of the page to the left, and the page number to the right, this is short for: --header-left='[webpage]' --header-right='[page]/[toPage]' --top 2cm --header-line
     String encoding                 //<encoding>               //Set the default text encoding, for input
     boolean disableExternalLinks    //                         //Do not make links to remote web pages
     boolean enableExternalLinks     //                         //Make links to remote web pages (default)
@@ -90,8 +90,8 @@ class WkhtmltoxWrapper {
     boolean enablePlugins           //                         //Enable installed plugins (plugins will likely not work)
     //post                          //<name> <value>           //Add an additional post field (repeatable)
     //post-file                     //<name> <path>            //Post an additional file (repeatable)
-    boolean printMediaType          //                         //Use print media-type instead of screen
-    boolean noPrintMediaType        //                         //Do not use print media-type instead of screen (default)
+    String printMediaType           //                         //Use print media-type instead of screen
+    String noPrintMediaType         //                         //Do not use print media-type instead of screen (default)
     String proxy                    //<proxy>                  //Use a proxy
     //radiobutton-checked-svg       //<path>                   //Use this SVG file when rendering checked radiobuttons
     //radiobutton-svg               //<path>                   //Use this SVG file when rendering unchecked radiobuttons
