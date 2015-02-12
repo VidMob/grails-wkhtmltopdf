@@ -1,5 +1,7 @@
 *.log
-/target
-*.zip
+/.settings
+/grails-wkhtmltopdf-*.zip
+/grails-wkhtmltopdf-*.zip.sha1
 /plugin.xml
-.settings
+/target
+/web-app

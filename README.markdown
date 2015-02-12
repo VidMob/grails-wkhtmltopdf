@@ -58,11 +58,11 @@ Usage
 to stream the content of an controller-action as pdf just call: /context/some/someAction.pdf
 
     class SomerController {
-        def someAction = {
+        def someAction() {
             def someInstance = SomeDomainObject.get(params.id)
     
             render( filename:"File ${someInstance.id}.pdf",
-					view:"/some/someGspTemplate",
+                    view:"/some/someGspTemplate",
                     model:[someInstance:someInstance],
                     header:"/pdf/someHeader",
                     footer:"/pdf/someFooter",
@@ -70,15 +70,16 @@ to stream the content of an controller-action as pdf just call: /context/some/so
                     marginTop:35,
                     marginBottom:20,
                     marginRight:20,
-                    headerSpacing:10,
-            )
+                    headerSpacing:10)
         }
     }
 
 Or create binary pdf data and use them for any other purpose
 
-    class SomeService implements Serializable {
-    
+    class SomeService {
+
+        static transactional = false
+
     		def byte[] pdfData = wkhtmltoxService.makePdf(
                     view: "/pdf/someGspTemplate",
                     model: [someInstance: someInstance],
@@ -88,8 +89,7 @@ Or create binary pdf data and use them for any other purpose
                     marginTop: 35,
                     marginBottom: 20,
                     marginRight: 20,
-                    headerSpacing: 10,
-            )
+                    headerSpacing: 10)
     	
     	
     		// DO Something e.g. send as mail
@@ -105,19 +105,18 @@ Or create binary pdf data and use them for any other purpose
 
 write your gsps as usual, just make sure, that the url's to the resources are absolute and reachable by the host maschine
 
-	<link rel="stylesheet" href="${resource(dir: '/css/style.css', absolute: true)}" type="text/css"/>
-	<img src="${resource(dir: '/images/image.jpg', absolute: true)}" width="200px"/>
+    <link rel="stylesheet" href="${resource(dir: '/css/style.css', absolute: true)}" type="text/css"/>
+    <img src="${resource(dir: '/images/image.jpg', absolute: true)}" width="200px"/>
 
 Options
 ----------------
 
 see the following command for all options available:
 
-	wkhtmltopdf --extended-help
-		
+    wkhtmltopdf --extended-help	
 
 Known issues
 ----------------
 
-* wkhtmltox must work ( try: ```wkhtmltopdf www.myhomepage.com myhomepage.pdf``` see: http://code.google.com/p/wkhtmltopdf/wiki/Usage )
+* wkhtmltox must work ( try: `wkhtmltopdf www.myhomepage.com myhomepage.pdf` see: http://code.google.com/p/wkhtmltopdf/wiki/Usage )
 * not tested on Windows (except windows7)
