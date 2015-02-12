@@ -100,7 +100,7 @@ Or create binary pdf data and use them for any other purpose
         }
     }
 
-write your gsps as usual, just make sure, that the url's to the resources are absolute and reachable by the host machine
+write your gsps as usual, just make sure, that the urls to the resources are absolute and reachable by the host machine
 
     <link rel="stylesheet" href="${resource(dir: '/css/style.css', absolute: true)}" type="text/css"/>
     <img src="${resource(dir: '/images/image.jpg', absolute: true)}" width="200px"/>
