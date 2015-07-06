@@ -54,7 +54,7 @@ Usage
 
 to stream the content of an controller-action as pdf just call: /context/some/someAction.pdf
 
-    class SomerController {
+    class SomeController {
         def someAction() {
             def someInstance = SomeDomainObject.get(params.id)
     
