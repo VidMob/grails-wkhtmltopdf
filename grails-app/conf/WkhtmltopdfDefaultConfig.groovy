@@ -4,7 +4,7 @@
  */
 grails {
     plugin {
-        wkhtmltopdf {
+        wkhtmltox {
             binary = "/usr/bin/wkhtmltopdf"
             makeBinaryAvailableClosure = { String targetPath ->
 
