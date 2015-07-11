@@ -28,7 +28,7 @@ finally make sure the following command works as expected:
 Configuration
 ----------------
 
-put the following line into your Config.groovy and adjust the path to your wkhtmltox binary ( which wkhtmltopdf )
+put the following line into your application.groovy and adjust the path to your wkhtmltox binary ( which wkhtmltopdf )
 
 unix
 
@@ -39,26 +39,22 @@ windows
     grails.plugin.wkhtmltox.binary = "C:/local/wkhtmltopdf/wkhtmltopdf.exe"
     
 
-also add the pdf mime type to Config.groovy
+also add the pdf mime type to grails.mime.type in application.yml
 
-    grails.mime.types = [
-        all:           '*/*',
-        .....
-       pdf:         'application/pdf'
-    ]
-    
+       pdf: application/pdf
 
 
 Usage
 ----------------
+Note that the method is temporarily renamed from render to renderPdf. A render method with pdf support will hopefully make it into the final version of this plugin.
 
-to stream the content of an controller-action as pdf just call: /context/some/someAction.pdf
+To stream the content of an controller-action as pdf just call: /context/some/someAction.pdf
 
     class SomeController {
         def someAction() {
             def someInstance = SomeDomainObject.get(params.id)
     
-            render( filename:"File ${someInstance.id}.pdf",
+            renderPdf( filename:"File ${someInstance.id}.pdf",
                     view:"/some/someGspTemplate",
                     model:[someInstance:someInstance],
                     header:"/pdf/someHeader",

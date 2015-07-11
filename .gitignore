@@ -7,3 +7,5 @@
 /web-app
 /.idea
 /*.iml
+/.gradle
+/build
