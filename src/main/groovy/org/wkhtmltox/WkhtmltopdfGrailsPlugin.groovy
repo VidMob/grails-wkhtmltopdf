@@ -23,10 +23,9 @@ class WkhtmltopdfGrailsPlugin extends Plugin {
 
     void doWithDynamicMethods() {
         // hooking into render method
-        def ctx = applicationContext
         grailsApplication.controllerClasses.each { controllerClass ->
-//            replaceRenderMethod(controllerClass, ctx)
-            addRenderPdfMethod(controllerClass, ctx)
+//            replaceRenderMethod(controllerClass)
+            addRenderPdfMethod(controllerClass)
         }
     }
 
@@ -34,8 +33,8 @@ class WkhtmltopdfGrailsPlugin extends Plugin {
         // only process controller classes
         if (grailsApplication.isControllerClass(event.source)) {
             def clazz = grailsApplication.getControllerClass(event.source.name)
-//            replaceRenderMethod(clazz, event.ctx)
-            addRenderPdfMethod(clazz, event.ctx)
+//            replaceRenderMethod(clazz, event)
+            addRenderPdfMethod(clazz)
         }
     }
 
@@ -44,14 +43,14 @@ class WkhtmltopdfGrailsPlugin extends Plugin {
      * of a Grails controller class and adds an alternative behaviour for the mime type
      * 'text/calendar' used by the iCalendar plugin.
      */
-    private void replaceRenderMethod(controllerClass, ctx) {
+    private void replaceRenderMethod(controllerClass) {
         def oldRender = controllerClass.metaClass.pickMethod("render", [Map] as Class[])
         // TODO find out how to replace render method now that the method is added by a trait (grails.artefact.controller.support.ResponseRenderer)
         controllerClass.metaClass.render = { Map params ->
             if (params.contentType?.toLowerCase() == 'application/pdf' || response.format == "pdf") {
                 def filename = params.remove("filename")
 
-                def data = ctx.wkhtmltoxService.makePdf(params)
+                def data = applicationContext.wkhtmltoxService.makePdf(params)
 
                 response.setHeader("Content-disposition", "attachment; filename=${filename}")
                 response.contentType = "application/pdf"
@@ -72,11 +71,11 @@ class WkhtmltopdfGrailsPlugin extends Plugin {
      * Add renderPdf method as an alternative to replacing render method until we find out how to do that.
      * replaceRenderMethod above doesn't work as is in Grails 3, probably because render method now is added by a trait.
      */
-    private void addRenderPdfMethod(controllerClass, ctx) {
+    private void addRenderPdfMethod(controllerClass) {
         controllerClass.metaClass.renderPdf = { Map params ->
             def filename = params.remove("filename")
 
-            def data = ctx.wkhtmltoxService.makePdf(params)
+            def data = applicationContext.wkhtmltoxService.makePdf(params)
 
             response.setHeader("Content-disposition", "attachment; filename=${filename}")
             response.contentType = "application/pdf"
