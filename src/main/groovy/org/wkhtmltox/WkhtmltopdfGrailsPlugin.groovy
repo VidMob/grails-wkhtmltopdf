@@ -72,18 +72,25 @@ class WkhtmltopdfGrailsPlugin extends Plugin {
      * replaceRenderMethod above doesn't work as is in Grails 3, probably because render method now is added by a trait.
      */
     private void addRenderPdfMethod(controllerClass) {
+        def oldRender = controllerClass.metaClass.pickMethod("render", [Map] as Class[])
         controllerClass.metaClass.renderPdf = { Map params ->
-            def filename = params.remove("filename")
+            if (params.contentType?.toLowerCase() == 'application/pdf' || response.format == "pdf") {
+                def filename = params.remove("filename")
 
-            def data = applicationContext.wkhtmltoxService.makePdf(params)
+                def data = applicationContext.wkhtmltoxService.makePdf(params)
 
-            response.setHeader("Content-disposition", "attachment; filename=${filename}")
-            response.contentType = "application/pdf"
-            response.outputStream.write(data)
-            response.characterEncoding = 'UTF-8'
-            response.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate') //HTTP/1.1
-            response.setHeader('Pragma', 'no-cache') // HTTP/1.0
-            response.outputStream.flush()
+                response.setHeader("Content-disposition", "attachment; filename=${filename}")
+                response.contentType = "application/pdf"
+                response.outputStream.write(data)
+                response.characterEncoding = 'UTF-8'
+                response.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate') //HTTP/1.1
+                response.setHeader('Pragma', 'no-cache') // HTTP/1.0
+                response.outputStream.flush()
+
+            } else {
+                // Defer to original render method
+                oldRender.invoke(delegate, [params] as Object[])
+            }
         }
     }
 
