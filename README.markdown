@@ -46,7 +46,6 @@ also add the pdf mime type to grails.mime.type in application.yml
 
 Usage
 ----------------
-Note that the method is temporarily renamed from render to renderPdf. A render method with pdf support will hopefully make it into the final version of this plugin.
 
 To stream the content of an controller-action as pdf just call: /context/some/someAction.pdf
 
@@ -54,7 +53,7 @@ To stream the content of an controller-action as pdf just call: /context/some/so
         def someAction() {
             def someInstance = SomeDomainObject.get(params.id)
     
-            renderPdf( filename:"File ${someInstance.id}.pdf",
+            render( filename:"File ${someInstance.id}.pdf",
                     view:"/some/someGspTemplate",
                     model:[someInstance:someInstance],
                     header:"/pdf/someHeader",
