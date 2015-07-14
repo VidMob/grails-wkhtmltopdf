@@ -1,4 +1,4 @@
-package wkhtmltopdf
+package org.grails.plugins.wkhtmltopdf
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration

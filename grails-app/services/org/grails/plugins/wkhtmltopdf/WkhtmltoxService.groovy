@@ -1,4 +1,4 @@
-package org.wkhtmltox
+package org.grails.plugins.wkhtmltopdf
 
 class WkhtmltoxService {
 

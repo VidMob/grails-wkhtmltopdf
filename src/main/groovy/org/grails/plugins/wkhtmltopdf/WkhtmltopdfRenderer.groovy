@@ -1,4 +1,4 @@
-package org.wkhtmltox
+package org.grails.plugins.wkhtmltopdf
 
 import grails.artefact.*
 import grails.artefact.controller.support.ResponseRenderer
