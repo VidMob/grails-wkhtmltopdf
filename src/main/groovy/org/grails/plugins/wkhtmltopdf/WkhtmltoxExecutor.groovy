@@ -22,10 +22,6 @@ class WkhtmltoxExecutor {
         this.wrapper = wrapper
     }
 
-    byte[] generatePdf(URL url) {
-        // TODO
-    }
-
     byte[] generatePdf(String html) {
         def stderr
         try {
