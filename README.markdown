@@ -20,7 +20,7 @@ linux
 
     apt-get install wkhtmltopdf
 
-finally make sure the following command works as expected:
+Finally make sure the following command works as expected:
 
     wkhtmltopdf www.google.de test.pdf
     
@@ -28,7 +28,7 @@ finally make sure the following command works as expected:
 Configuration
 ----------------
 
-put the following line into your application.groovy and adjust the path to your wkhtmltopdf binary ( which wkhtmltopdf )
+Put the following line into your application.groovy and adjust the path to your wkhtmltopdf binary ( which wkhtmltopdf )
 
 unix
 
@@ -39,7 +39,7 @@ windows
     grails.plugin.wkhtmltopdf.binary = "C:/local/wkhtmltopdf/wkhtmltopdf.exe"
     
 
-also add the pdf mime type to grails.mime.type in application.yml
+Also add the pdf mime type to grails.mime.type in application.yml
 
        pdf: application/pdf
 
@@ -95,7 +95,7 @@ Or create binary pdf data and use them for any other purpose
         }
     }
 
-write your gsps as usual, just make sure, that the urls to the resources are absolute and reachable by the host machine
+Write your gsps as usual, just make sure, that the urls to the resources are absolute and reachable by the host machine
 
     <link rel="stylesheet" href="${resource(dir: '/css/style.css', absolute: true)}" type="text/css"/>
     <img src="${resource(dir: '/images/image.jpg', absolute: true)}" width="200px"/>
@@ -103,7 +103,7 @@ write your gsps as usual, just make sure, that the urls to the resources are abs
 Options
 ----------------
 
-see the following command for all options available:
+See the following command for all options available:
 
     wkhtmltopdf --extended-help	
 
