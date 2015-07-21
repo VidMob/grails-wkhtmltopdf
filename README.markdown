@@ -28,15 +28,15 @@ finally make sure the following command works as expected:
 Configuration
 ----------------
 
-put the following line into your application.groovy and adjust the path to your wkhtmltox binary ( which wkhtmltopdf )
+put the following line into your application.groovy and adjust the path to your wkhtmltopdf binary ( which wkhtmltopdf )
 
 unix
 
-    grails.plugin.wkhtmltox.binary = "/usr/bin/wkhtmltopdf"
+    grails.plugin.wkhtmltopdf.binary = "/usr/bin/wkhtmltopdf"
     
 windows
     
-    grails.plugin.wkhtmltox.binary = "C:/local/wkhtmltopdf/wkhtmltopdf.exe"
+    grails.plugin.wkhtmltopdf.binary = "C:/local/wkhtmltopdf/wkhtmltopdf.exe"
     
 
 also add the pdf mime type to grails.mime.type in application.yml
@@ -72,7 +72,7 @@ Or create binary pdf data and use them for any other purpose
 
         static transactional = false
 
-    		def byte[] pdfData = wkhtmltoxService.makePdf(
+            def byte[] pdfData = wkhtmltoxService.makePdf(
                     view: "/pdf/someGspTemplate",
                     model: [someInstance: someInstance],
                     header: "/pdf/someHeader",
@@ -82,10 +82,10 @@ Or create binary pdf data and use them for any other purpose
                     marginBottom: 20,
                     marginRight: 20,
                     headerSpacing: 10)
-    	
-    	
-    		// DO Something e.g. send as mail
-    		//sendAsynchronousMail {
+
+
+            // DO Something e.g. send as mail
+            //sendAsynchronousMail {
             //    multipart true
             //    to "mail@mail.de"
             //    subject "see PDF Attachment";

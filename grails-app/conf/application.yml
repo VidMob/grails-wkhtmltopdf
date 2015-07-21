@@ -113,5 +113,5 @@ environments:
 ---
 grails:
     plugin:
-        wkhtmltox:
+        wkhtmltopdf:
             binary: /usr/bin/wkhtmltopdf

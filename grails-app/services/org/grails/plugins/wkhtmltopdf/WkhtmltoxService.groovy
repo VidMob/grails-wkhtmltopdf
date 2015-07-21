@@ -50,11 +50,11 @@ class WkhtmltoxService {
             wrapper.footerHtml = "file://" + footerFile.absolutePath
         }
 
-        def wkhtmltoxConfig = grailsApplication.config.grails.plugin.wkhtmltox
+        def wkhtmltopdfConfig = grailsApplication.config.grails.plugin.wkhtmltopdf
 
-        String binaryFilePath = wkhtmltoxConfig.binary.toString()
+        String binaryFilePath = wkhtmltopdfConfig.binary.toString()
         if (!(new File(binaryFilePath)).exists()) {
-            throw new WkhtmltoxException("Cannot find wkhtml executable at $binaryFilePath")
+            throw new WkhtmltoxException("Cannot find wkhtmltopdf executable at $binaryFilePath")
         }
 
         return new WkhtmltoxExecutor(binaryFilePath,wrapper).generatePdf(htmlBodyContent)
