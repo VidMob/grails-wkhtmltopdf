@@ -2,7 +2,7 @@
 grails:
     profile: web-plugin
     codegen:
-        defaultPackage: wkhtmltopdf
+        defaultPackage: org.grails.plugins.wkhtmltopdf
 info:
     app:
         name: '@info.app.name@'
