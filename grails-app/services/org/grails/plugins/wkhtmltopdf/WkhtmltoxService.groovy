@@ -19,22 +19,22 @@ class WkhtmltoxService {
 
         config.encoding = config.encoding ?: "UTF-8"
 
-        PartialView contentPartial = new PartialView(view,model,plugin)
+        PartialView contentPartial = new PartialView(view, model, plugin)
         PartialView headerPartial
         PartialView footerPartial
 
         if (header) {
-            headerPartial = new PartialView(header,model,plugin)
+            headerPartial = new PartialView(header, model, plugin)
         }
         if (footer) {
-            footerPartial = new PartialView(footer,model,plugin)
+            footerPartial = new PartialView(footer, model, plugin)
         }
 
-        config.each { key,value ->
+        config.each { key, value ->
             wrapper."$key" = value
         }
 
-        return makePdf(wrapper,contentPartial,headerPartial,footerPartial)
+        return makePdf(wrapper, contentPartial, headerPartial, footerPartial)
     }
 
     byte[] makePdf(WkhtmltoxWrapper wrapper, contentPartial, headerPartial = null, footerPartial = null) {
@@ -57,7 +57,7 @@ class WkhtmltoxService {
             throw new WkhtmltoxException("Cannot find wkhtmltopdf executable at $binaryFilePath")
         }
 
-        return new WkhtmltoxExecutor(binaryFilePath,wrapper).generatePdf(htmlBodyContent)
+        return new WkhtmltoxExecutor(binaryFilePath, wrapper).generatePdf(htmlBodyContent)
     }
 
     protected String renderMailView(PartialView partialView) {
@@ -66,7 +66,7 @@ class WkhtmltoxService {
 
     File makePartialViewFile(PartialView pv) {
         String content = renderMailView(pv)
-        File tempFile = File.createTempFile("/wkhtmltopdf",".html")
+        File tempFile = File.createTempFile("/wkhtmltopdf", ".html")
         tempFile.withWriter("UTF8") {
             it.write(content)
             it.close()

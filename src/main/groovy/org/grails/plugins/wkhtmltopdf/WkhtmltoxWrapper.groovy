@@ -152,7 +152,7 @@ class WkhtmltoxWrapper {
                 return
             }
 
-            def argumentName = property.name.replaceAll(/(\B[A-Z])/,'-$1').toLowerCase()
+            def argumentName = property.name.replaceAll(/(\B[A-Z])/, '-$1').toLowerCase()
             switch (property.type) {
                 case Boolean:
                 case boolean:

@@ -15,7 +15,7 @@ class WkhtmltopdfGrailsPlugin extends Plugin {
     def profiles = ['web']
     def documentation = "http://grails.org/plugin/wkhtmltopdf"
     def license = "APACHE"
-    def developers = [[name: "Ronny Løvtangen", email: "ronny@lovtangen.com" ]]
+    def developers = [[name: "Ronny Løvtangen", email: "ronny@lovtangen.com"]]
     def issueManagement = [system: 'Github', url: 'https://github.com/rlovtangen/grails-wkhtmltopdf/issues']
     def scm = [url: 'https://github.com/rlovtangen/grails-wkhtmltopdf']
 
