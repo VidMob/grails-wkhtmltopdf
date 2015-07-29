@@ -111,3 +111,9 @@ See the following command for all options available:
 
 * wkhtmltox must work ( try: `wkhtmltopdf www.myhomepage.com myhomepage.pdf` )
 * not tested on Windows (except windows7)
+
+== Changes since Grails 2 version
+
+* Properties renamed from `grails.plugin.wkhtmltox.xxx` to `grails.plugin.wkhtmltopdf.xxx`
+* Removed support for property `grails.plugin.wkhtmltox.makeBinaryAvailableClosure`. Was not documented and didn't work as expected.
+* Package renamed to `org.grails.plugins.wkhtmltopdf`
