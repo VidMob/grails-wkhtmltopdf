@@ -101,15 +101,13 @@ Write your gsps as usual, just make sure, that the urls to the resources are abs
     <link rel="stylesheet" href="${resource(dir: '/css/style.css', absolute: true)}" type="text/css"/>
     <img src="${resource(dir: '/images/image.jpg', absolute: true)}" width="200px"/>
 
-Options
-----------------
+== Options
 
 See the following command for all options available:
 
     wkhtmltopdf --extended-help
 
-Known issues
-----------------
+== Known issues
 
 * wkhtmltox must work ( try: `wkhtmltopdf www.myhomepage.com myhomepage.pdf` )
 * not tested on Windows (except windows7)
