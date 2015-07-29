@@ -5,9 +5,7 @@ import grails.plugins.*
 class WkhtmltopdfGrailsPlugin extends Plugin {
 
     def grailsVersion = "3.0.0 > *"
-    def pluginExcludes = [
-        "grails-app/views/error.gsp"
-    ]
+    def pluginExcludes = []
     def observe = ['controllers']
     def loadAfter = ['mail', 'controllers']
     def title = "Wkhtmltopdf"
