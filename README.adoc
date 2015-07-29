@@ -35,7 +35,7 @@ windows
     grails.plugin.wkhtmltopdf.binary = "C:/local/wkhtmltopdf/wkhtmltopdf.exe"
 
 
-Also add the pdf mime type to grails.mime.type in application.yml
+If using Grails 3.0.3 or lower, add the pdf mime type to grails.mime.types in application.yml
 
        pdf: application/pdf
 
