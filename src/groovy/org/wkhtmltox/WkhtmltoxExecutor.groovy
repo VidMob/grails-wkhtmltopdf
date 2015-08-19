@@ -36,13 +36,9 @@ class WkhtmltoxExecutor {
             commandList.add(0, binaryPath)
             commandList << "-q" << "-" << "-"
 
+            log.debug("Invoking wkhtml2pdf with command $commandList")
+            log.trace "Following html will be converted to PDF: $html"
 
-            if (log.isDebugEnabled()){
-                log.debug("Invoking wkhtml2pdf with command $commandList")
-            }
-            if (log.isTraceEnabled()){
-                log.debug "Following html will be converted to PDF: $html"
-            }
             def process = (commandList as String[]).execute()
             def stdout = new ByteArrayOutputStream()
             stderr = new ByteArrayOutputStream()
