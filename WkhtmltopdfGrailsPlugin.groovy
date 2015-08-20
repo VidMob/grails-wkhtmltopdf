@@ -1,5 +1,5 @@
 class WkhtmltopdfGrailsPlugin {
-    def version = "0.1.10"
+    def version = "0.1.11-SNAPSHOT"
     def grailsVersion = "2.0 > *"
     def loadAfter = ['mail', 'controllers']
     def author = "Tobias Nendel"
