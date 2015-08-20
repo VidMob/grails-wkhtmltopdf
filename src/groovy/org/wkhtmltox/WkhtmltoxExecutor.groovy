@@ -1,8 +1,11 @@
 package org.wkhtmltox
 
+import groovy.util.logging.Commons
+
 /**
  * @author tobiasnendel
  */
+@Commons
 class WkhtmltoxExecutor {
 
     String binaryPath
@@ -32,8 +35,11 @@ class WkhtmltoxExecutor {
             def commandList = wrapper.toArgumentsList()
             commandList.add(0, binaryPath)
             commandList << "-q" << "-" << "-"
-            def process = (commandList as String[]).execute()
 
+            log.debug("Invoking wkhtml2pdf with command $commandList")
+            log.trace "Following html will be converted to PDF: $html"
+
+            def process = (commandList as String[]).execute()
             def stdout = new ByteArrayOutputStream()
             stderr = new ByteArrayOutputStream()
             OutputStreamWriter os = new OutputStreamWriter(process.outputStream, "UTF8")
