@@ -43,11 +43,12 @@ class WkhtmltoxService {
 
         if (headerPartial) {
             File headerFile = makePartialViewFile(headerPartial)
-            wrapper.headerHtml = "file://" + headerFile.absolutePath
+            //We don't need "file://" prefix. See https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1645.  It doesn't work on windows
+            wrapper.headerHtml = headerFile.absolutePath
         }
         if (footerPartial) {
             File footerFile = makePartialViewFile(footerPartial)
-            wrapper.footerHtml = "file://" + footerFile.absolutePath
+            wrapper.footerHtml = footerFile.absolutePath
         }
 
         def wkhtmltopdfConfig = grailsApplication.config.grails.plugin.wkhtmltopdf
