@@ -140,7 +140,7 @@ class WkhtmltoxWrapper {
     String tocHeaderText            //<text>                   //The header text of the toc (default Table of Content)
     Integer tocLevelIndentation     //<width>                  //For each level of headings in the toc indent by this length (default 1em)
     boolean disableTocLinks         //                         //Do not link from toc to sections
-    float tocTextSizeShrink         //<real>                   //For each level of headings in the toc the font is scaled by this facter (default 0.8)
+//    float tocTextSizeShrink         //<real>                   //For each level of headings in the toc the font is scaled by this facter (default 0.8)
     String xslStyleSheet            //<file>                   //Use the supplied xsl style sheet for printing the table of content
 
     List toArgumentsList() {
@@ -165,6 +165,10 @@ class WkhtmltoxWrapper {
                     break
                 case Integer:
                 case int:
+                    arguments << "--" + argumentName << propertyValue.toString()
+                    break
+                case Float:
+                case float:
                     arguments << "--" + argumentName << propertyValue.toString()
                     break
                 case URL:
