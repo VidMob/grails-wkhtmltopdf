@@ -1,8 +1,5 @@
 package org.grails.plugins.wkhtmltopdf
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
 import groovy.util.logging.Commons
 
 /**
@@ -13,8 +10,6 @@ class WkhtmltoxExecutor {
 
     String binaryPath
     WkhtmltoxWrapper wrapper
-
-    protected Logger log = LoggerFactory.getLogger(getClass())
 
     WkhtmltoxExecutor(String binaryPath, WkhtmltoxWrapper wrapper) {
 
