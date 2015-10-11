@@ -11,7 +11,8 @@ import grails.artefact.controller.support.ResponseRenderer
 trait WkhtmltopdfRenderer extends ResponseRenderer {
 
     void render(Map params) {
-        if (params.contentType?.toLowerCase() == 'application/pdf' || response.format == "pdf") {
+        // if the "file" parameter is provided then we assume the user wants to render an existing file. I.e. render(file: new File(absolutePath), fileName: "book.pdf")
+        if ((params.contentType?.toLowerCase() == 'application/pdf' || response.format == "pdf") && (!params.file)) {
             def filename = params.remove("filename")
 
             def data = applicationContext.wkhtmltoxService.makePdf(params)
