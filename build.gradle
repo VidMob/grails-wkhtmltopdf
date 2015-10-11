@@ -75,7 +75,7 @@ task wrapper(type: Wrapper) {
 //See defaults at https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/bintrayPublishing.gradle
 bintray {
     pkg {
-        name = "org.grails.plugins:$project.name"
+        name = "$project.name"
         userOrg = ''
         websiteUrl = "https://github.com/rlovtangen/grails-$project.name"
         issueTrackerUrl = "https://github.com/rlovtangen/grails-$project.name/issues"
