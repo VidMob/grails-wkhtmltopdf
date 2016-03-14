@@ -105,7 +105,7 @@ class WkhtmltoxWrapper {
     String userStyleSheet           //<url>                    //Specify a user style sheet, to load with every page
     String username                 //<username>               //HTTP Authentication username
     String windowStatus             //<windowStatus>           //Wait until window.status is equal to this string before rendering page
-    float zoom                      //<float>                  //Use this zoom factor (default 1)
+    Float zoom                      //<float>                  //Use this zoom factor (default 1)
 
     //
     //Headers And Footer Options
