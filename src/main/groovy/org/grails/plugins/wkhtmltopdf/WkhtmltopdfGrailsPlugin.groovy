@@ -11,7 +11,7 @@ class WkhtmltopdfGrailsPlugin extends Plugin {
     def title = "Wkhtmltopdf"
     def author = "Tobias Nendel"
     def authorEmail = "tobias.nendel@scubical.com"
-    def description = 'Provides a Wrapper for wkhtmltopdf, a simple shell utility to convert HTML to PDF using the WebKit rendering engine and Qt'
+    def description = 'Provides a Wrapper for wkhtmltopdf, a command line tool to render HTML into PDF'
     def profiles = ['web']
     def documentation = "https://github.com/rlovtangen/grails-wkhtmltopdf"
     def license = "APACHE"

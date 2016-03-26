@@ -1,38 +1,46 @@
-= Grails Wkhtmltox / Wkhtmltopdf
+= Grails wkhtmltopdf
 
-This plugin provides an easy integration of the wkhtmltox library into Grails.
+This plugin provides an easy integration of `wkhtmltopdf`, a command line tool to render HTML into PDF.
+
+This enables you to write a Grails View in HTML as usual, but render as PDF.
 
 == Wkhtmltopdf
-"Simple shell utility to convert html to pdf using the webkit rendering engine, and qt."
+`wkhtmltopdf` and `wkhtmltoimage` are open source (LGPLv3) command line tools to render HTML into PDF and various image formats using the Qt WebKit rendering engine.
+These run entirely "headless" and do not require a display or display service. +
 http://wkhtmltopdf.org/
-GNU Lesser GPL
 
 == Installation
 
-mac
-
-    brew install wkhtmltopdf
-
-linux
-
-    apt-get install wkhtmltopdf
+In addition to adding the plugin as dependency to your Grails project, the `wkhtmltopdf` binary must be installed.
+See instructions at http://wkhtmltopdf.org/ or install using your package manager (apt-get, yum, brew etc)
 
 Finally make sure the following command works as expected:
 
-    wkhtmltopdf www.google.de test.pdf
+    wkhtmltopdf www.google.com test.pdf
 
 
 == Configuration
 
-Put the following line into your application.groovy and adjust the path to your wkhtmltopdf binary (`which wkhtmltopdf`)
+Put the following line into your `application.groovy` (or corresponding property in `application.yml`) and adjust the path to your wkhtmltopdf binary (`which wkhtmltopdf`)
 
-unix
+    grails.plugin.wkhtmltopdf.binary = "/usr/local/bin/wkhtmltopdf"
 
-    grails.plugin.wkhtmltopdf.binary = "/usr/bin/wkhtmltopdf"
+Typical paths:
 
-windows
+[cols="2*", options="header"]
+|===
+|OS
+|Path
 
-    grails.plugin.wkhtmltopdf.binary = "C:/local/wkhtmltopdf/wkhtmltopdf.exe"
+|OS X
+|/usr/local/bin/wkhtmltopdf
+
+|Linux
+|/usr/bin/wkhtmltopdf
+
+|Windows
+|C:/local/wkhtmltopdf/wkhtmltopdf.exe
+|===
 
 
 == Supported Grails versions
@@ -53,7 +61,7 @@ Supported
 
 == Usage
 
-To stream the content of an controller-action as pdf just call: /context/some/someAction.pdf
+To stream the content of a Controller-action as PDF just call `/some/someAction.pdf`
 
 [source,groovy]
 ----
@@ -75,7 +83,7 @@ class SomeController {
 }
 ----
 
-Or create binary pdf data and use them for any other purpose
+Or create binary PDF data and use them for any other purpose
 
 [source,groovy]
 ----
@@ -83,6 +91,7 @@ class SomeService {
 
     static transactional = false
 
+    def doSomething() {
         def byte[] pdfData = wkhtmltoxService.makePdf(
                 view: "/pdf/someGspTemplate",
                 model: [someInstance: someInstance],
@@ -107,10 +116,15 @@ class SomeService {
 }
 ----
 
-Write your gsps as usual, just make sure, that the urls to the resources are absolute and reachable by the host machine
+Write your GSPs as usual, just make sure, that the urls to the assets are absolute and reachable by the host machine
 
-    <link rel="stylesheet" href="${resource(dir: '/css/style.css', absolute: true)}" type="text/css"/>
-    <img src="${resource(dir: '/images/image.jpg', absolute: true)}" width="200px"/>
+Development mode:
+
+    grails.assets.url = "http://localhost:8080/assets/"
+
+Production:
+
+    grails.assets.url = "https://example.com/assets/"
 
 == Options
 
@@ -120,8 +134,8 @@ See the following command for all options available:
 
 == Known issues
 
-* wkhtmltox must work ( try: `wkhtmltopdf www.myhomepage.com myhomepage.pdf` )
-* not tested on Windows (except windows7)
+* `wkhtmltopdf` must work ( try: `wkhtmltopdf www.myhomepage.com myhomepage.pdf` )
+* Not tested on Windows (except Windows 7)
 
 == Changes since Grails 2 version
 
