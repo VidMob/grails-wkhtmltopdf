@@ -65,7 +65,7 @@ dependencies {
 
     console "org.grails:grails-console"
 
-    compile "org.grails.plugins:mail:2.0.0.RC6"
+    compile "org.grails.plugins:mail:2.0.0.RC4"
 }
 
 task wrapper(type: Wrapper) {
