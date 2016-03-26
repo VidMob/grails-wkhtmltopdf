@@ -35,10 +35,21 @@ windows
     grails.plugin.wkhtmltopdf.binary = "C:/local/wkhtmltopdf/wkhtmltopdf.exe"
 
 
-If using Grails 3.0.3 or lower, add the pdf mime type to grails.mime.types in application.yml
+== Supported Grails versions
+
+=== Grails 3.0.0 - 3.0.2
+Not supported
+
+=== Grails 3.0.3
+Add the pdf mime type to grails.mime.types in application.yml
 
        pdf: application/pdf
 
+=== Grails 3.0.4 > 3.0.7
+Supported, but only with mail plugin 2.0.0.RC4. (See https://github.com/grails3-plugins/mail/issues/16)
+
+=== Grails 3.0.8 > *
+Supported
 
 == Usage
 
