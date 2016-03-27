@@ -53,7 +53,7 @@ Add the pdf mime type to grails.mime.types in application.yml
 
        pdf: application/pdf
 
-=== Grails 3.0.4 > 3.0.7
+=== Grails 3.0.4 - 3.0.7
 Supported, but only with mail plugin 2.0.0.RC4. (See https://github.com/grails3-plugins/mail/issues/16)
 
 === Grails 3.0.8 > *
