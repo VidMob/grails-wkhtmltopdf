@@ -40,6 +40,7 @@ class WkhtmltoxWrapper {
     boolean useXserver              //                         //Use the X server (some plugins and other stuff might not work without X11)
     //version,                      //                         //Output version information an exit
     String viewportSize             //                         //Set viewport size if you have custom scrollbars or css attribute overflow to emulate window size
+
     //
     // Outline
     //
