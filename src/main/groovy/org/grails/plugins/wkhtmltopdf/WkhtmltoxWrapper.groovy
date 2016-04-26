@@ -39,7 +39,7 @@ class WkhtmltoxWrapper {
     String title                    //<text>                   //The title of the generated pdf file (The title of the first document is used if not specified)
     boolean useXserver              //                         //Use the X server (some plugins and other stuff might not work without X11)
     //version,                      //                         //Output version information an exit
-
+    String viewportSize             //                         //Set viewport size if you have custom scrollbars or css attribute overflow to emulate window size
     //
     // Outline
     //
