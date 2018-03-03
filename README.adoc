@@ -135,6 +135,7 @@ See the following command for all options available:
 == Known issues
 
 * `wkhtmltopdf` must work ( try: `wkhtmltopdf www.myhomepage.com myhomepage.pdf` )
+* For `v0.12.4` & Mac OS users https://github.com/wkhtmltopdf/wkhtmltopdf/issues/3241
 * Not tested on Windows (except Windows 7)
 
 == Changes since Grails 2 version
