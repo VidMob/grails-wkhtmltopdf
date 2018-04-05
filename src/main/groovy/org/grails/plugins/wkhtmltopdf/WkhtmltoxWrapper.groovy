@@ -91,8 +91,8 @@ class WkhtmltoxWrapper {
     boolean enablePlugins           //                         //Enable installed plugins (plugins will likely not work)
     //post                          //<name> <value>           //Add an additional post field (repeatable)
     //post-file                     //<name> <path>            //Post an additional file (repeatable)
-    boolean printMediaType           //                         //Use print media-type instead of screen
-    String noPrintMediaType         //                         //Do not use print media-type instead of screen (default)
+    boolean printMediaType          //                         //Use print media-type instead of screen
+    boolean noPrintMediaType        //                         //Do not use print media-type instead of screen (default)
     String proxy                    //<proxy>                  //Use a proxy
     //radiobutton-checked-svg       //<path>                   //Use this SVG file when rendering checked radiobuttons
     //radiobutton-svg               //<path>                   //Use this SVG file when rendering unchecked radiobuttons
