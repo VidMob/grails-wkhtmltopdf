@@ -41,13 +41,15 @@ class WkhtmltoxService {
 
         String htmlBodyContent = renderMailView(contentPartial)
 
+        File headerFile
         if (headerPartial) {
-            File headerFile = makePartialViewFile(headerPartial)
+            headerFile = makePartialViewFile(headerPartial)
             //We don't need "file://" prefix. See https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1645.  It doesn't work on windows
             wrapper.headerHtml = headerFile.absolutePath
         }
+        File footerFile
         if (footerPartial) {
-            File footerFile = makePartialViewFile(footerPartial)
+            footerFile = makePartialViewFile(footerPartial)
             wrapper.footerHtml = footerFile.absolutePath
         }
 
@@ -60,7 +62,18 @@ class WkhtmltoxService {
             makeBinaryAvailableClosure.call(binaryFilePath)
         }
 
-        return new WkhtmltoxExecutor(binaryFilePath,wrapper).generatePdf(htmlBodyContent)
+        byte[] pdfData = new WkhtmltoxExecutor(binaryFilePath,wrapper).generatePdf(htmlBodyContent)
+        try {
+            if (headerFile) {
+                headerFile.delete()
+            }
+            if (footerFile) {
+                footerFile.delete()
+            }
+        } catch (SecurityException e) {
+            log.error("Error deleting temp file: ${e.message}", e)
+        }
+        return pdfData
     }
 
     protected String renderMailView(PartialView partialView) {
